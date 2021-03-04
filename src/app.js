@@ -1,33 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 
-// const { v4: uuid, validate: isUuid } = require('uuid');
+const repositoriesController = require('./controllers/repositories');
+const likeController = require('./controllers/like');
 
 const app = express();
-
 app.use(express.json());
 app.use(cors());
 
-const repositories = [];
-
-app.get("/repositories", (request, response) => {
-  // TODO
-});
-
-app.post("/repositories", (request, response) => {
-  // TODO
-});
-
-app.put("/repositories/:id", (request, response) => {
-  // TODO
-});
-
-app.delete("/repositories/:id", (request, response) => {
-  // TODO
-});
-
-app.post("/repositories/:id/like", (request, response) => {
-  // TODO
-});
+app.get("/repositories", repositoriesController.index);
+app.post("/repositories", repositoriesController.create);
+app.put("/repositories/:id", repositoriesController.update);
+app.delete("/repositories/:id", repositoriesController.delete);
+app.post("/repositories/:id/like", likeController.create);
 
 module.exports = app;
